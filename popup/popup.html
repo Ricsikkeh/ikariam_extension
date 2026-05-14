@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ikariam Helper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="app-header">
+    <span class="app-logo">⚓</span>
+    <h1 class="app-title">Ikariam Helper</h1>
+    <button id="refresh-btn" class="icon-btn" title="Adatok frissítése" aria-label="Adatok frissítése">↻</button>
+  </header>
+
+  <!-- Status banner (shown when not on an Ikariam page) -->
+  <div id="status-banner" class="status-banner hidden" role="alert"></div>
+
+  <!-- Player info -->
+  <section id="player-info" class="player-info hidden" aria-label="Játékos adatok">
+    <span id="player-name" class="player-name"></span>
+    <span id="player-score" class="player-score"></span>
+    <span id="player-town" class="player-town"></span>
+  </section>
+
+  <!-- Tabs -->
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-target="tab-resources" role="tab" aria-selected="true">Erőforrások</button>
+    <button class="tab" data-target="tab-queue" role="tab" aria-selected="false">Építés</button>
+    <button class="tab" data-target="tab-research" role="tab" aria-selected="false">Kutatás</button>
+    <button class="tab" data-target="tab-military" role="tab" aria-selected="false">Katonaság</button>
+  </nav>
+
+  <main class="tab-body">
+
+    <!-- Resources tab -->
+    <section id="tab-resources" class="tab-content active" role="tabpanel">
+      <table class="resource-table" aria-label="Erőforrások táblázata">
+        <thead>
+          <tr>
+            <th>Erőforrás</th>
+            <th>Mennyiség</th>
+            <th>/óra</th>
+          </tr>
+        </thead>
+        <tbody id="resource-rows">
+          <tr><td colspan="3" class="loading-cell">Adatok betöltése...</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Build queue tab -->
+    <section id="tab-queue" class="tab-content" role="tabpanel">
+      <ul id="build-queue-list" class="queue-list" aria-label="Építési sor">
+        <li class="loading-cell">Adatok betöltése...</li>
+      </ul>
+    </section>
+
+    <!-- Research tab -->
+    <section id="tab-research" class="tab-content" role="tabpanel">
+      <div id="research-content">
+        <p class="loading-cell">Adatok betöltése...</p>
+      </div>
+    </section>
+
+    <!-- Military tab -->
+    <section id="tab-military" class="tab-content" role="tabpanel">
+      <div id="military-content">
+        <p class="loading-cell">Adatok betöltése...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <span id="last-updated">–</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
