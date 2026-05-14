@@ -1,0 +1,326 @@
+/* ==========================================================================
+   Ikariam Helper – Content Script Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Toggle button
+   -------------------------------------------------------------------------- */
+#ikariam-helper-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483646;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a3a5c 0%, #2e6da4 100%);
+  color: #fff;
+  font-size: 20px;
+  border: 2px solid #4a9fd4;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+#ikariam-helper-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+}
+
+#ikariam-helper-toggle.active {
+  background: linear-gradient(135deg, #2e6da4 0%, #1a3a5c 100%);
+  box-shadow: 0 0 0 3px rgba(74, 159, 212, 0.4), 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   Main panel
+   -------------------------------------------------------------------------- */
+#ikariam-helper-panel {
+  position: fixed;
+  bottom: 76px;
+  right: 20px;
+  z-index: 2147483645;
+  width: 320px;
+  max-height: 460px;
+  background: #12243a;
+  border: 1px solid #2e6da4;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  color: #d6e8f7;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+#ikariam-helper-panel.open {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.ih-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, #1a3a5c, #2e6da4);
+  gap: 6px;
+}
+
+.ih-title {
+  flex: 1;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+.ih-icon-btn {
+  background: none;
+  border: none;
+  color: #a8d4f0;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+  line-height: 1;
+}
+
+.ih-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Tabs
+   -------------------------------------------------------------------------- */
+.ih-tabs {
+  display: flex;
+  background: #0e1f33;
+  border-bottom: 1px solid #1e4060;
+}
+
+.ih-tab {
+  flex: 1;
+  padding: 7px 4px;
+  background: none;
+  border: none;
+  color: #7ab2d8;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.ih-tab:hover {
+  background: rgba(46, 109, 164, 0.25);
+  color: #c8e6f8;
+}
+
+.ih-tab.active {
+  background: #12243a;
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid #4a9fd4;
+}
+
+/* --------------------------------------------------------------------------
+   Body / tab content
+   -------------------------------------------------------------------------- */
+.ih-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #2e6da4 #0e1f33;
+}
+
+.ih-body::-webkit-scrollbar { width: 6px; }
+.ih-body::-webkit-scrollbar-track { background: #0e1f33; }
+.ih-body::-webkit-scrollbar-thumb { background: #2e6da4; border-radius: 3px; }
+
+.ih-tab-content {
+  display: none;
+}
+
+.ih-tab-content.active {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Player info
+   -------------------------------------------------------------------------- */
+.ih-player-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  background: rgba(46, 109, 164, 0.15);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.ih-player-name { font-weight: 600; color: #fff; }
+.ih-score { color: #f0c040; }
+.ih-town { color: #88c8e8; }
+
+/* --------------------------------------------------------------------------
+   Resource table
+   -------------------------------------------------------------------------- */
+.ih-resource-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.ih-resource-table th {
+  text-align: left;
+  color: #7ab2d8;
+  font-weight: 600;
+  padding: 4px 6px;
+  border-bottom: 1px solid #1e4060;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.ih-resource-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid rgba(30, 64, 96, 0.5);
+}
+
+.ih-resource-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ih-resource-table tr:hover td {
+  background: rgba(46, 109, 164, 0.1);
+}
+
+.ih-amount {
+  text-align: right;
+  font-weight: 600;
+  color: #fff;
+}
+
+.ih-rate {
+  text-align: right;
+  color: #5cb85c;
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   Build queue
+   -------------------------------------------------------------------------- */
+.ih-queue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ih-queue-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  background: rgba(46, 109, 164, 0.12);
+  border-radius: 6px;
+  border-left: 3px solid #2e6da4;
+  gap: 8px;
+}
+
+.ih-queue-item.ih-soon { border-left-color: #e6a020; }
+.ih-queue-item.ih-urgent { border-left-color: #e74c3c; background: rgba(231, 76, 60, 0.1); }
+
+.ih-queue-name { font-size: 12px; flex: 1; }
+.ih-queue-time { font-size: 12px; font-weight: 600; color: #88c8e8; white-space: nowrap; }
+.ih-queue-item.ih-soon .ih-queue-time { color: #e6a020; }
+.ih-queue-item.ih-urgent .ih-queue-time { color: #e74c3c; }
+
+/* --------------------------------------------------------------------------
+   Research
+   -------------------------------------------------------------------------- */
+.ih-research-item {
+  padding: 10px;
+  background: rgba(46, 109, 164, 0.15);
+  border-radius: 8px;
+  border-left: 3px solid #2e6da4;
+}
+
+.ih-research-item.ih-soon { border-left-color: #e6a020; }
+.ih-research-item.ih-urgent { border-left-color: #e74c3c; background: rgba(231, 76, 60, 0.1); }
+
+.ih-research-name { font-weight: 600; margin-bottom: 4px; }
+.ih-research-time { font-size: 12px; color: #88c8e8; }
+.ih-research-item.ih-soon .ih-research-time { color: #e6a020; }
+.ih-research-item.ih-urgent .ih-research-time { color: #e74c3c; }
+
+/* --------------------------------------------------------------------------
+   Military
+   -------------------------------------------------------------------------- */
+.ih-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #7ab2d8;
+  margin: 8px 0 4px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #1e4060;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.ih-unit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ih-unit-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.ih-unit-list li:hover { background: rgba(46, 109, 164, 0.1); border-radius: 4px; }
+
+.ih-unit-count { font-weight: 600; color: #fff; }
+
+/* --------------------------------------------------------------------------
+   Empty state
+   -------------------------------------------------------------------------- */
+.ih-empty {
+  color: #7ab2d8;
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.ih-footer {
+  padding: 5px 12px;
+  background: #0e1f33;
+  border-top: 1px solid #1e4060;
+  font-size: 10px;
+  color: #4a7a9b;
+  text-align: right;
+}

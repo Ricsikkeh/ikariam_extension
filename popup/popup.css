@@ -1,0 +1,324 @@
+/* ==========================================================================
+   Ikariam Helper – Popup Styles
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary:   #12243a;
+  --bg-secondary: #0e1f33;
+  --bg-accent:    rgba(46, 109, 164, 0.12);
+  --border:       #1e4060;
+  --text:         #d6e8f7;
+  --text-muted:   #7ab2d8;
+  --text-white:   #ffffff;
+  --blue:         #2e6da4;
+  --blue-light:   #4a9fd4;
+  --green:        #5cb85c;
+  --orange:       #e6a020;
+  --red:          #e74c3c;
+  --gold:         #f0c040;
+}
+
+body {
+  width: 340px;
+  background: var(--bg-primary);
+  color: var(--text);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, #1a3a5c, #2e6da4);
+  border-bottom: 1px solid var(--blue-light);
+}
+
+.app-logo {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.app-title {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: 0.3px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: #a8d4f0;
+  font-size: 17px;
+  cursor: pointer;
+  padding: 3px 7px;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+  line-height: 1;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-white);
+}
+
+/* --------------------------------------------------------------------------
+   Status banner
+   -------------------------------------------------------------------------- */
+.status-banner {
+  padding: 8px 12px;
+  background: rgba(231, 76, 60, 0.12);
+  border-bottom: 1px solid rgba(231, 76, 60, 0.3);
+  color: #f09090;
+  font-size: 12px;
+  text-align: center;
+}
+
+.status-banner.info {
+  background: rgba(46, 109, 164, 0.15);
+  border-bottom-color: rgba(74, 159, 212, 0.3);
+  color: var(--text-muted);
+}
+
+.status-banner.hidden { display: none; }
+
+/* --------------------------------------------------------------------------
+   Player info
+   -------------------------------------------------------------------------- */
+.player-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 7px 12px;
+  background: rgba(46, 109, 164, 0.1);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.player-info.hidden { display: none; }
+
+.player-name { font-weight: 700; color: var(--text-white); }
+.player-score { color: var(--gold); }
+.player-town  { color: #88c8e8; }
+
+/* --------------------------------------------------------------------------
+   Tabs
+   -------------------------------------------------------------------------- */
+.tabs {
+  display: flex;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  padding: 7px 2px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  background: rgba(46, 109, 164, 0.25);
+  color: #c8e6f8;
+}
+
+.tab.active {
+  background: var(--bg-primary);
+  color: var(--text-white);
+  font-weight: 600;
+  border-bottom: 2px solid var(--blue-light);
+}
+
+/* --------------------------------------------------------------------------
+   Tab body
+   -------------------------------------------------------------------------- */
+.tab-body {
+  min-height: 200px;
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue) var(--bg-secondary);
+}
+
+.tab-body::-webkit-scrollbar { width: 6px; }
+.tab-body::-webkit-scrollbar-track { background: var(--bg-secondary); }
+.tab-body::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+.tab-content {
+  display: none;
+  padding: 10px 12px;
+}
+
+.tab-content.active { display: block; }
+
+.loading-cell {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Resource table
+   -------------------------------------------------------------------------- */
+.resource-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.resource-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.resource-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid rgba(30, 64, 96, 0.5);
+}
+
+.resource-table tr:last-child td { border-bottom: none; }
+.resource-table tr:hover td { background: var(--bg-accent); }
+
+.td-amount {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.td-rate {
+  text-align: right;
+  color: var(--green);
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   Build queue
+   -------------------------------------------------------------------------- */
+.queue-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.queue-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  background: var(--bg-accent);
+  border-radius: 6px;
+  border-left: 3px solid var(--blue);
+  gap: 8px;
+}
+
+.queue-item.soon   { border-left-color: var(--orange); }
+.queue-item.urgent { border-left-color: var(--red); background: rgba(231, 76, 60, 0.1); }
+
+.queue-name { font-size: 12px; flex: 1; }
+.queue-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: #88c8e8;
+  white-space: nowrap;
+}
+
+.queue-item.soon   .queue-time { color: var(--orange); }
+.queue-item.urgent .queue-time { color: var(--red); }
+
+/* --------------------------------------------------------------------------
+   Research
+   -------------------------------------------------------------------------- */
+.research-card {
+  padding: 10px;
+  background: var(--bg-accent);
+  border-radius: 8px;
+  border-left: 3px solid var(--blue);
+}
+
+.research-card.soon   { border-left-color: var(--orange); }
+.research-card.urgent { border-left-color: var(--red); background: rgba(231, 76, 60, 0.1); }
+
+.research-card-name { font-weight: 600; margin-bottom: 4px; }
+.research-card-time { font-size: 12px; color: #88c8e8; }
+.research-card.soon   .research-card-time { color: var(--orange); }
+.research-card.urgent .research-card-time { color: var(--red); }
+
+/* --------------------------------------------------------------------------
+   Military
+   -------------------------------------------------------------------------- */
+.mil-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin: 8px 0 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.unit-list {
+  list-style: none;
+  margin-bottom: 6px;
+}
+
+.unit-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.unit-list li:hover { background: var(--bg-accent); border-radius: 4px; }
+
+.unit-count { font-weight: 600; color: var(--text-white); }
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.app-footer {
+  padding: 5px 12px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: #4a7a9b;
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   Empty state
+   -------------------------------------------------------------------------- */
+.empty-state {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 12px;
+}

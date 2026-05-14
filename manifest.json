@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "Ikariam Helper",
+  "version": "1.0.0",
+  "description": "Segéd eszköz az Ikariam játékhoz: erőforrás-kezelés, építési sor, kutatás és katonai áttekintés.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Ikariam Helper"
+  },
+  "background": {
+    "service_worker": "background/service_worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.ikariam.com/*",
+        "*://*.ikariam.hu/*",
+        "*://*.ikariam.de/*",
+        "*://*.ikariam.org/*",
+        "*://*.ikariam.gr/*",
+        "*://*.ikariam.fr/*",
+        "*://*.ikariam.it/*",
+        "*://*.ikariam.pl/*",
+        "*://*.ikariam.ru/*",
+        "*://*.ikariam.cz/*",
+        "*://*.ikariam.sk/*",
+        "*://*.ikariam.ro/*",
+        "*://*.ikariam.net/*",
+        "*://*.gameforge.com/*"
+      ],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "*://*.ikariam.com/*",
+    "*://*.ikariam.hu/*",
+    "*://*.ikariam.de/*",
+    "*://*.ikariam.org/*",
+    "*://*.ikariam.gr/*",
+    "*://*.ikariam.fr/*",
+    "*://*.ikariam.it/*",
+    "*://*.ikariam.pl/*",
+    "*://*.ikariam.ru/*",
+    "*://*.ikariam.cz/*",
+    "*://*.ikariam.sk/*",
+    "*://*.ikariam.ro/*",
+    "*://*.ikariam.net/*",
+    "*://*.gameforge.com/*"
+  ]
+}
