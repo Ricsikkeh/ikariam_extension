@@ -41,7 +41,9 @@ async function refreshActiveTab() {
       }
     }
   } catch (_err) {
-    // Tab may not have a content script loaded yet – ignore silently.
+    // Tab may not have a content script loaded yet (e.g. page is still loading
+    // or the tab navigated away). This is expected and can be ignored.
+    console.debug('[Ikariam Helper SW] Badge refresh skipped:', String(_err));
   }
 }
 

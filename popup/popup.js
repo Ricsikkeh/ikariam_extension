@@ -195,7 +195,9 @@ async function loadData() {
         return;
       }
     } catch (_err) {
-      // Content script may not have injected yet – fall back to cached
+      // Content script may not have injected yet (e.g. page still loading) –
+      // fall through to the storage cache below.
+      console.debug('[Ikariam Helper] Could not reach content script:', String(_err));
     }
 
     // Fall back to storage cache

@@ -15,7 +15,7 @@
   /** Parse a localised number string like "1.234" or "1,234" into an integer. */
   function parseGameNumber(str) {
     if (!str) return 0;
-    return parseInt(str.replace(/[.,\s]/g, '').replace(/[^\d]/g, ''), 10) || 0;
+    return parseInt(str.replace(/\D/g, ''), 10) || 0;
   }
 
   /** Convert a time string like "01:23:45" or "45:12" into total seconds. */
@@ -469,23 +469,8 @@
     createPanel();
     startCountdown();
 
-    // Re-fetch data whenever Ikariam updates the DOM (AJAX navigation)
-    const observer = new MutationObserver(() => {
-      updatePanel();
-    });
-
-    // Observe only high-level containers to avoid performance issues
-    const targets = [
-      document.getElementById('js_GlobalMenu'),
-      document.getElementById('buildingQueueList'),
-      document.getElementById('researchCurrentName'),
-      document.body,
-    ].filter(Boolean);
-
-    const target = targets[0] || document.body;
-    observer.observe(target, { childList: true, subtree: true, characterData: true });
-
-    // Throttle observer-triggered updates to at most once every 5 seconds
+    // Throttle MutationObserver-triggered updates to at most once every 5 seconds
+    // to avoid hammering the DOM-extraction logic on rapid game updates.
     let updateThrottle = null;
     const throttledUpdate = () => {
       if (updateThrottle) return;
@@ -495,14 +480,14 @@
       }, 5000);
     };
 
-    observer.disconnect();
+    // Watch the top-level body for child additions (Ikariam uses AJAX navigation
+    // that replaces large DOM subtrees). childList + subtree:false keeps overhead low.
+    const observer = new MutationObserver(throttledUpdate);
     observer.observe(document.body, {
       childList: true,
-      subtree: false,
+      subtree: true,
       characterData: false,
     });
-
-    document.body.addEventListener('DOMSubtreeModified', throttledUpdate, { passive: true });
   }
 
   if (document.readyState === 'loading') {
